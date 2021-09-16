@@ -14,6 +14,8 @@ const Form = () => {
     email: yup.string().required("Email obrigatório").email("Email inválido"),
     cellphone: yup.string().required("Telefone obrigatório"),
     address: yup.string().required("Endereço obrigatório"),
+    password: yup.string().required("Senha obrigatória"),
+    passwordConfirm: yup.string().required("Senha obrigatória"),
   });
 
   const {
@@ -26,7 +28,7 @@ const Form = () => {
 
   const [cardUser, setCardUser] = useState([]);
 
-  const onSubmitFunction = (data) => setCardUser([data]);
+  const onSubmitFunction = (data) => setCardUser(data);
   return (
     <>
       <div>
@@ -47,9 +49,19 @@ const Form = () => {
           <input placeholder="Telefone*" {...register("cellphone")} />
           {errors.cellphone?.message}
           <br />
-          <input required type="password" placeholder="Senha*" />
+          <input
+            type="password"
+            placeholder="Senha*"
+            {...register("password")}
+          />
+          {errors.password?.message}
           <br />
-          <input required type="password" placeholder="Confirme sua senha*" />
+          <input
+            type="password"
+            placeholder="Confirme sua senha*"
+            {...register("passwordConfirm")}
+          />
+          {errors.passwordConfirm?.message}
           <br />
           <input required type="checkbox" name="checkbox" id="checkbox" />
           <label>Eu aceito os termos de uso da aplicação</label>
